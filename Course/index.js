@@ -1,0 +1,2 @@
+// ^TypeScript.
+// ^TypeScript es un lenga¿uaje de programación de codigo abierto realizado por Microsoft para extender JavaScript, el cual TypeScript es un lenguaje de programación tipado estaticamente, por lo cual nos va a permitir ponerle tipos de datos a las variables, funciones y otros elementos del codigo. Esta creado justamente para hacer aplicaciones JavaScript de manera robusta y solida aunque sean escalables (grandes y complejas).
