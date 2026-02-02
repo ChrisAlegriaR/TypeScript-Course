@@ -70,3 +70,16 @@ console.log('Array boolean:\tconst nombreVariable: boolean[] = [true, false, tru
 console.log('Enum común:\tenum nombreEnum {\n\t\t\tVALOR\n\t\t}'); // *Ejemplo de enum numérico.
 console.log('Enum string:\tenum nombreEnum {\n\t\t\tVALOR = \'informacion\'\n\t\t};'); // *Ejemplo de enum con valores string.
 
+// &Function
+// &
+
+// ~Definidios por usuario
+// ~Los tipos de datos definidos por el usuario ya que de acuerdo al tipo de aplicacion o la logica de nogicio vamos a definir nuestras clase de lo que necesitemos de ese negocio o programa.
+// &Class
+// &
+
+// &Interface
+// &
+
+// &Type
+// &
