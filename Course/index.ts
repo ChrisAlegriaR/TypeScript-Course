@@ -71,15 +71,19 @@ console.log('Enum común:\tenum nombreEnum {\n\t\t\tVALOR\n\t\t}'); // *Ejemplo 
 console.log('Enum string:\tenum nombreEnum {\n\t\t\tVALOR = \'informacion\'\n\t\t};'); // *Ejemplo de enum con valores string.
 
 // &Function
-// &
+// &Dentro de las funciones es muy similar al declarar variables, ya que en estas se debera de especificar los tipos de datos unicamente en los tipos de parametros que dichas funciones recibiran, asi mismo dependiendo el tipo de funcion deberemos especificar que tipo de dato las funcion retornara, cabe resaltar que en el aspecto de especificar eel tipo de dato a retornar no implica usar otro tipo de datos dentro de la funcion, unicxamente declaramos el tipo de dato que la variable devolvera.
+// ?Funciones con tipado explícito.
+// ?Las funciones con tipado explícito en TypeScript son funciones muy similares a las funciones tradicionales utilizadas en JavaScript, con la diferencia clave de que en TypeScript se deben **especificar de forma explícita los tipos de datos** que reciben los parámetros y, opcionalmente, el tipo de dato que la función va a retornar. Este tipado adicional permite que el compilador valide el uso correcto de la función, detectando errores como pasar argumentos incorrectos o retornar valores incompatibles. Para lograr esto, se añaden **dos puntos (`:`)** después de cada parámetro para indicar su tipo y, después del paréntesis de los parámetros, se vuelve a utilizar `:` para declarar el tipo de retorno. Este enfoque hace que el comportamiento de la función sea más claro, predecible y seguro en comparación con JavaScript.
+console.log(`Funciones normales: \tfunction nombreFuncion(a: number, b: number): number {\n\t\t\t\treturn a + b;\n\t\t\t}`); // *Ejemplo de función tradicional con tipado explícito en parámetros y retorno.
 
-// ~Definidios por usuario
-// ~Los tipos de datos definidos por el usuario ya que de acuerdo al tipo de aplicacion o la logica de nogicio vamos a definir nuestras clase de lo que necesitemos de ese negocio o programa.
-// &Class
-// &
+// ?Funciones Flecha.
+// ?Las funciones flecha en TypeScript funcionan de manera muy similar a las funciones flecha en JavaScript, pero con soporte de tipado para los parámetros. En este tipo de funciones, normalmente **no es obligatorio especificar el tipo de retorno**, ya que TypeScript es capaz de **inferir automáticamente** el tipo basándose en los tipos de los parámetros y en la expresión que se retorna. Este mecanismo se conoce como **type inference** y permite escribir código más limpio sin perder seguridad de tipos. Aun así, los parámetros sí deben tiparse para garantizar consistencia y evitar errores durante el desarrollo.
+console.log('Funciones flecha: \tlet nombreFuncion = (a: number, b: number) => a + b;'); // *Función flecha con parámetros tipados y retorno inferido.
 
-// &Interface
-// &
+// ?Funciones con parámetros opcionales.
+// ?En TypeScript es posible declarar **parámetros opcionales**, los cuales no son obligatorios al momento de invocar una función. Para definir un parámetro como opcional, se agrega un **signo de interrogación (`?`)** justo después del nombre del parámetro y antes de los dos puntos del tipo. Esto indica que dicho parámetro puede recibir un valor o ser `undefined`. Este tipo de parámetros es muy útil cuando una función puede comportarse de distintas formas dependiendo de si recibe o no cierta información, sin necesidad de sobrecargar funciones.
+console.log(`Funciones parámetros opcionales: \tlet nombreFuncion = (a: number, b?: number) => \`Dato 1: \${a}, dato opcional: \${b}\`;`); // *Ejemplo de función con un parámetro opcional.
 
-// &Type
-// &
+// ?Funciones con parámetros por defecto.
+// ?Los parámetros por defecto permiten asignar un **valor inicial predefinido** a un parámetro en caso de que no se proporcione al ejecutar la función. En TypeScript, esta funcionalidad se declara de forma muy similar a JavaScript, con la diferencia de que se debe **especificar el tipo del parámetro** antes del operador de asignación (`=`). Esta técnica es especialmente útil para asegurar valores consistentes y evitar comprobaciones manuales dentro de la función cuando un argumento no es enviado.
+console.log('Funciones parámetros por defecto: \t\tlet nombreFuncion = (a: number, b: number = 5) => a + b;'); // *Función con parámetro por defecto tipado.
