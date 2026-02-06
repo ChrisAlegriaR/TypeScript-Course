@@ -87,3 +87,14 @@ console.log(`Funciones parámetros opcionales: \tlet nombreFuncion = (a: number,
 // ?Funciones con parámetros por defecto.
 // ?Los parámetros por defecto permiten asignar un **valor inicial predefinido** a un parámetro en caso de que no se proporcione al ejecutar la función. En TypeScript, esta funcionalidad se declara de forma muy similar a JavaScript, con la diferencia de que se debe **especificar el tipo del parámetro** antes del operador de asignación (`=`). Esta técnica es especialmente útil para asegurar valores consistentes y evitar comprobaciones manuales dentro de la función cuando un argumento no es enviado.
 console.log('Funciones parámetros por defecto: \t\tlet nombreFuncion = (a: number, b: number = 5) => a + b;'); // *Función con parámetro por defecto tipado.
+
+// ~Definidios por usuario
+// ~Los tipos de datos definidos por el usuario ya que de acuerdo al tipo de aplicacion o la logica de nogicio vamos a definir nuestras clase de lo que necesitemos de ese negocio o programa.
+// &Class
+// &
+
+// &Interface
+// &
+
+// &Type
+// &
