@@ -91,10 +91,15 @@ console.log('Funciones parámetros por defecto: \t\tlet nombreFuncion = (a: numb
 // ~Definidios por usuario
 // ~Los tipos de datos definidos por el usuario ya que de acuerdo al tipo de aplicacion o la logica de nogicio vamos a definir nuestras clase de lo que necesitemos de ese negocio o programa.
 // &Class
-// &
+// &Como bien sabemos en JS se usa una forma muy especificia de clases y dentro de TS se usa una estructura practicamente igual, solamente que al igual que los datos anteriores tendremos que declarar el tipo de dato en las variables o parametros que utilicemos dentro de dicha clase. Ahora bien un ejemplo de un cambio que puede confundir y se vera mas adelante es el uso de algunos aspectos de la OOP, como uso de encapsulamiento en TS, pero sin embargo el unico aspecto que se mencionara aqui es que si quieres declarar variables o parametros fuera del consutructor es necesario declarar el tipo de dato y especificar su valor en caso de ser diferente a undefined, ya que por ejempl oen JS solo ahciamos nombreVaraible mientras que en TS debe ser nombreVariable: tipo de dato = enCasodeserdiferenteaundefined. IMportnate: cabe resaltar que si bien en JS usabampos this.nombre = parametro, por ejemplo cabe resaltar que tenemos en TS que definir esa variable de this.variable, esto se hace fuera del constructor. ya que..por lo que tenemos que declarar el tip ode dato de dos cosas, una es del paramatreto que recibbiremos y sera el igual de this. y pñor otro el this. 
+console.log('Clases: \tclass nombreClase {\n\t\t\tnombre;\n\t\t\tciudad: string = \'CDMX;\'\n\t\t\tedad?: number;\n\n\t\t\tconstructor(nombreParametro: string){\n\t\t\t\tthis.nombre = nombreParametro;\n\t\t\t};\n\t\t};');
 
 // &Interface
-// &
+// &Ahora bien una de las partes mas fundamentales de TS, es que si bien se sabe como se definen los objetos en JS, teniendo como djemplo let nombreVariable = {clave: valor}, si bien en TS se mantiene esta misma estreuctura, hay que recordar que al ser Ts un lenguaje de tipo tipado tenemos que especificar el tipo de dato de cada clave que usemos en el objeto, por lo que para eso exsiten las interfaces, en ñas cuales tenemos que definir nuevamente cada clave pero esta vez con su tipo de dato que tendra o contendra. De igual manera se usan interface para clases.
+console.log('Interface basica: \t\t\tinterface NombreInterface {\n\t\t\t\t\t\tnombre: string;\n\t\t\t\t\t}');
+console.log('Interface propiedades opcionales: \tinterface NombreInterface {\n\t\t\t\t\t\tnombre?: string;\n\t\t\t\t\t}');
+console.log('Interface para funciones: \t\tinterface NombreInterface {\n\t\t\t\t\t\t(a: number, b: number): boolean;\n\t\t\t\t\t}');
+console.log('Interface para clases: \t\t\tinterface NombreInterface {\n\t\t\t\t\t\tsaludar(): void;\n\t\t\t\t\t}');
 
 // &Type
 // &
