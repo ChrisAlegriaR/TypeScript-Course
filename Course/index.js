@@ -87,3 +87,36 @@ console.log('Type con union types: \t\ttype Nombre = string | null;'); // *Alias
 console.log('Type propiedades opcionales: \ttype Persona1 = {\n\t\t\t\t\tnombre?: string;\n\t\t\t\t};'); // *Alias con propiedades opcionales.
 console.log('Type para funciones: \t\ttype Comprador1 = {\n\t\t\t\t\t(a: number, b: number): boolean;\n\t\t\t\t};'); // *Alias para la firma de una función.
 console.log('Type para clases: \t\ttype Persona2 = {\n\t\t\t\t\tsaludar(): void;\n\t\t\t\t};'); // *Alias que define métodos esperados en una clase.
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// ^Tipos de datos primitivos.
+// ^Los tipos de datos primitivos son aquellos que se **pasan y se comparan por valor**, lo que significa que al asignarlos o compararlos se trabaja directamente con el contenido y no con una referencia en memoria. Una característica clave de estos tipos es que son **inmutables**, es decir, su valor no puede modificarse internamente una vez creado; únicamente pueden ser **reasignados**, lo cual implica reemplazar completamente el valor anterior por uno nuevo. Dentro de esta categoría se incluyen tipos como `string`, `number`, `boolean`, entre otros. En TypeScript, la declaración de estos tipos es más estricta que en JavaScript, ya que se debe indicar explícitamente el tipo de dato siguiendo una estructura clara: tipo de variable, nombre de la variable, dos puntos, tipo de dato, operador de asignación y el valor que se almacenará.
+console.log('\n=========== Tipos de datos primitivos. ==========='); //* Indica el inicio visual de la sección dedicada a los tipos de datos primitivos en consola.
+// ~Algunos casos de uso de los tipos de datos primitivos.
+// ~El manejo de los tipos de datos primitivos en TypeScript es muy similar al de JavaScript en cuanto a su uso y manipulación. La diferencia principal radica en la **declaración explícita del tipo**, ya que TypeScript exige definir qué tipo de dato se va a utilizar desde el inicio. Una vez declarados y tipados, los valores primitivos se comportan de la misma forma que en JavaScript, permitiendo concatenaciones, operaciones aritméticas y evaluaciones lógicas. Este enfoque combina la flexibilidad de JavaScript con la seguridad adicional que ofrece el tipado estático.
+console.log('----- Casos de uso de los tipos de datos primitivos. -----'); //* Marca en consola el inicio de los ejemplos prácticos.
+// &Caso de uso: String.
+// &Los valores de tipo `string` permiten trabajar con **texto y cadenas de caracteres**. Al ser tipos primitivos, las operaciones como la concatenación generan **nuevos valores**, sin modificar los strings originales. Este comportamiento refuerza la inmutabilidad de los datos primitivos y es ampliamente utilizado para construir mensajes, textos dinámicos o valores derivados de otros strings.
+let datoPrimitivoString1 = 'Hola '; //* Declara una variable string tipada que almacena la primera parte del texto.
+let datoPrimitivoString2 = 'Mundo'; //* Declara una segunda variable string tipada con la otra parte del texto.
+let datoPrimitivoStringResultado = datoPrimitivoString1 + datoPrimitivoString2; //* Concatena ambos strings y guarda el nuevo valor en una tercera variable.
+console.log(`String: El resultado de la unión de datoPrimitivoString1 y datoPrimitivoString2 es: ${datoPrimitivoStringResultado}.`); //* Muestra en consola el resultado de la concatenación.
+// &Caso de uso: Number.
+// &El tipo de dato `number` se utiliza para realizar **operaciones matemáticas** como sumas, restas, multiplicaciones o divisiones. En TypeScript, al igual que en JavaScript, no existe una distinción entre números enteros y decimales; todos se tratan como `number`. El tipado garantiza que solo valores numéricos puedan participar en estas operaciones, evitando errores comunes como intentar sumar texto con números.
+let datoPrimitivoNumber1 = 5; //* Declara una variable numérica tipada con un valor inicial.
+let datoPrimitivoNumber2 = 2; //* Declara una segunda variable numérica tipada.
+let datoPrimitivoNumberResultado = datoPrimitivoNumber1 + datoPrimitivoNumber2; //* Realiza una suma entre ambos valores y guarda el resultado.
+console.log(`Number: El resultado de la suma entre datoPrimitivoNumber1 y datoPrimitivoNumber2 es de: ${datoPrimitivoNumberResultado}.`); //* Imprime el resultado de la operación aritmética.
+// &Caso de uso: Boolean.
+// &Los valores booleanos representan **condiciones lógicas**, pudiendo ser únicamente `true` o `false`. Su uso es fundamental en estructuras de control como condicionales y bucles. En TypeScript, los booleanos se manejan de la misma forma que en JavaScript, pero el tipado asegura que la variable solo pueda almacenar valores booleanos, reforzando la lógica del programa y evitando asignaciones incorrectas.
+let datoPrimitivoBoolean = true; //* Declara una variable booleana tipada con valor verdadero.
+if (datoPrimitivoBoolean) { //* Evalúa la condición; si es true, se ejecuta este bloque.
+    console.log('Boolean: El valor de datoPrimitivoBoolean es: true.'); //* Se ejecuta cuando la condición es verdadera.
+}
+else { //* Bloque alternativo que se ejecuta si la condición es falsa.
+    console.log('Boolean: El valor de datoPrimitivoBoolean es: false.'); //* Se ejecuta cuando la condición es falsa.
+} //* Cierre de la estructura condicional if/else.
+// ~Desglose dentro de editores de código.
+// ~Los editores de código modernos ofrecen múltiples herramientas que facilitan el desarrollo, como autocompletado, sugerencias y validaciones en tiempo real. En el caso de TypeScript, una de las ventajas más importantes es que, al declarar una variable con un tipo específico, el editor puede **inferir automáticamente qué métodos y propiedades están disponibles** para ese tipo. Esto significa que al escribir el nombre de la variable seguido de un punto, el editor mostrará únicamente las funciones compatibles con ese tipo de dato, ayudando a evitar errores y acelerando el desarrollo. Esta característica mejora significativamente la experiencia del desarrollador y reduce la posibilidad de usar métodos incorrectos.
+let datoString = ''; //* Declara una variable string vacía para demostrar el autocompletado del editor.
+// datoString. //* Al escribir el punto, el editor mostrará únicamente métodos propios del tipo string.
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
