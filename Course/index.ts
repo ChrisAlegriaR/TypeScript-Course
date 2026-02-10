@@ -152,6 +152,26 @@ let datoString: string = ''; //* Declara una variable string vacía para demostr
 // ~En TypeScript, aunque normalmente se declara un único tipo de dato para cada variable, el lenguaje permite definir **variables que acepten múltiples tipos posibles**. Esta característica es conocida como **Union Types** y resulta especialmente útil cuando una variable puede almacenar distintos valores dependiendo del flujo del programa, como datos provenientes de formularios, respuestas de una API o estados intermedios. Para declarar una variable con más de un tipo, se utiliza el **símbolo de barra vertical (`|`)**, el cual indica que la variable puede ser cualquiera de los tipos especificados. Este enfoque mantiene el código flexible sin perder la seguridad del tipado, ya que TypeScript seguirá validando que solo se asignen los tipos permitidos.
 let datoPrimitivoConMasDeUnTipoDeDatoPrimitivo: string | number | null | undefined = 'Hola Mundo'; //* Declara una variable utilizando Union Types, permitiendo que el valor sea string, number, null o undefined, e inicializándola con un string válido.
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+// ^Any: Cualquier dato.
+// ^`any` es uno de los conceptos **más delicados e importantes** dentro de TypeScript. Su propósito principal es permitir que una variable pueda almacenar **cualquier tipo de dato**, sin aplicar reglas de tipado ni validaciones por parte del compilador. En la práctica, utilizar `any` equivale a **desactivar completamente el sistema de tipos**, haciendo que TypeScript se comporte de forma muy similar a JavaScript puro. Por esta razón, aunque existen escenarios donde su uso es inevitable (como migraciones de JS a TS o datos externos no controlados), la **recomendación principal es evitarlo siempre que sea posible**, ya que rompe la seguridad, estructura y robustez que TypeScript ofrece. Si un proyecto depende excesivamente de `any`, generalmente es mejor considerar directamente JavaScript.
+console.log('\n=========== Any: Cualquier Dato. ==========='); //* Muestra en consola el inicio de la sección dedicada al tipo de dato `any`.
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+// ~¿Cómo se declaran y usan las variables tipo Any?
+// ~Para declarar una variable de tipo `any`, TypeScript ofrece dos formas principales. La primera consiste simplemente en **declarar una variable sin asignarle un tipo ni un valor inicial**, lo que provoca que TypeScript infiera automáticamente el tipo `any`. La segunda forma es **declarar explícitamente el tipo `any`** utilizando dos puntos y la palabra reservada `any`. En ambos casos, la variable podrá almacenar cualquier tipo de dato y cambiar de tipo en cualquier momento. Este comportamiento es riesgoso, ya que TypeScript deja de validar operaciones, métodos y asignaciones. Además, cuando una variable `any` contiene un valor específico, el editor puede sugerir métodos según el valor actual, lo que puede generar una **falsa sensación de seguridad**.
+console.log('----- ¿Cómo se declaran y usan las variables tipo Any?. -----'); //* Indica en consola el inicio de los ejemplos sobre el uso de `any`.
+
+let tipoDatoAny; //* Declara una variable sin tipo ni valor inicial, por lo que TypeScript infiere automáticamente el tipo `any`.
+let tipoDatoAny2: any; //* Declara explícitamente una variable con tipo `any`, desactivando el sistema de tipos para ella.
+
+tipoDatoAny = 'Hola Mundo'; //* Asigna un valor string a la variable `any`, sin restricciones de tipado.
+console.log(`Tipo de dato Any como string: ${tipoDatoAny}.`); //* Imprime el valor actual de la variable, tratándola como string.
+
+tipoDatoAny = 10; //* Reasigna la misma variable `any` con un valor numérico, demostrando que puede cambiar de tipo libremente.
+console.log(`Mismo dato Any pero ahora como number: ${tipoDatoAny}.`); //* Imprime el nuevo valor, ahora interpretado como number.
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
