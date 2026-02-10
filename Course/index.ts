@@ -148,4 +148,10 @@ if (datoPrimitivoBoolean) { //* Evalúa la condición; si es true, se ejecuta es
 let datoString: string = ''; //* Declara una variable string vacía para demostrar el autocompletado del editor.
 // datoString. //* Al escribir el punto, el editor mostrará únicamente métodos propios del tipo string.
 
+// ~Declaración de una variable con más de un tipo de dato.
+// ~En TypeScript, aunque normalmente se declara un único tipo de dato para cada variable, el lenguaje permite definir **variables que acepten múltiples tipos posibles**. Esta característica es conocida como **Union Types** y resulta especialmente útil cuando una variable puede almacenar distintos valores dependiendo del flujo del programa, como datos provenientes de formularios, respuestas de una API o estados intermedios. Para declarar una variable con más de un tipo, se utiliza el **símbolo de barra vertical (`|`)**, el cual indica que la variable puede ser cualquiera de los tipos especificados. Este enfoque mantiene el código flexible sin perder la seguridad del tipado, ya que TypeScript seguirá validando que solo se asignen los tipos permitidos.
+let datoPrimitivoConMasDeUnTipoDeDatoPrimitivo: string | number | null | undefined = 'Hola Mundo'; //* Declara una variable utilizando Union Types, permitiendo que el valor sea string, number, null o undefined, e inicializándola con un string válido.
+
+
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
