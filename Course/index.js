@@ -126,7 +126,6 @@ let datoPrimitivoConMasDeUnTipoDeDatoPrimitivo = 'Hola Mundo'; //* Declara una v
 // ^Any: Cualquier dato.
 // ^`any` es uno de los conceptos **más delicados e importantes** dentro de TypeScript. Su propósito principal es permitir que una variable pueda almacenar **cualquier tipo de dato**, sin aplicar reglas de tipado ni validaciones por parte del compilador. En la práctica, utilizar `any` equivale a **desactivar completamente el sistema de tipos**, haciendo que TypeScript se comporte de forma muy similar a JavaScript puro. Por esta razón, aunque existen escenarios donde su uso es inevitable (como migraciones de JS a TS o datos externos no controlados), la **recomendación principal es evitarlo siempre que sea posible**, ya que rompe la seguridad, estructura y robustez que TypeScript ofrece. Si un proyecto depende excesivamente de `any`, generalmente es mejor considerar directamente JavaScript.
 console.log('\n=========== Any: Cualquier Dato. ==========='); //* Muestra en consola el inicio de la sección dedicada al tipo de dato `any`.
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // ~¿Cómo se declaran y usan las variables tipo Any?
 // ~Para declarar una variable de tipo `any`, TypeScript ofrece dos formas principales. La primera consiste simplemente en **declarar una variable sin asignarle un tipo ni un valor inicial**, lo que provoca que TypeScript infiera automáticamente el tipo `any`. La segunda forma es **declarar explícitamente el tipo `any`** utilizando dos puntos y la palabra reservada `any`. En ambos casos, la variable podrá almacenar cualquier tipo de dato y cambiar de tipo en cualquier momento. Este comportamiento es riesgoso, ya que TypeScript deja de validar operaciones, métodos y asignaciones. Además, cuando una variable `any` contiene un valor específico, el editor puede sugerir métodos según el valor actual, lo que puede generar una **falsa sensación de seguridad**.
 console.log('----- ¿Cómo se declaran y usan las variables tipo Any?. -----'); //* Indica en consola el inicio de los ejemplos sobre el uso de `any`.
@@ -137,3 +136,5 @@ console.log(`Tipo de dato Any como string: ${tipoDatoAny}.`); //* Imprime el val
 tipoDatoAny = 10; //* Reasigna la misma variable `any` con un valor numérico, demostrando que puede cambiar de tipo libremente.
 console.log(`Mismo dato Any pero ahora como number: ${tipoDatoAny}.`); //* Imprime el nuevo valor, ahora interpretado como number.
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// ^Arrays
+// ^
