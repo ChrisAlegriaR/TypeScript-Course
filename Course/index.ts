@@ -172,3 +172,4 @@ console.log(`Mismo dato Any pero ahora como number: ${tipoDatoAny}.`); //* Impri
 
 // ^Arrays
 // ^
+
