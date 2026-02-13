@@ -137,4 +137,6 @@ tipoDatoAny = 10; //* Reasigna la misma variable `any` con un valor numérico, d
 console.log(`Mismo dato Any pero ahora como number: ${tipoDatoAny}.`); //* Imprime el nuevo valor, ahora interpretado como number.
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // ^Arrays
-// ^
+// ^Sabemos que los array en JS se declaran sin tipado ya que dicho lenguaje es mas flexble y no incluiye un tipado al igual que TS lo hace, port lo que bien, sabemos que TS usa de estructura o base a TS por lo que dentro de dicho lenguaje de igual manerap odemos declarar un array sin necesidad de espoecificar el tipado, ya que lo que hace en estos casos TS infiere el tip ode array que estamos declarando ,esto quiere decir que basandose ts en lo que contiene el arry y el tipo de datos este inferie que tido de array es.
+console.log('\n=========== Arrays. ===========');
+let variableTipoArray = [1, 2, 3, 4, 5];
