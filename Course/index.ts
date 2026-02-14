@@ -170,11 +170,29 @@ console.log(`Mismo dato Any pero ahora como number: ${tipoDatoAny}.`); //* Impri
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-// ^Arrays
-// ^Sabemos que los array en JS se declaran sin tipado ya que dicho lenguaje es mas flexble y no incluiye un tipado al igual que TS lo hace, port lo que bien, sabemos que TS usa de estructura o base a TS por lo que dentro de dicho lenguaje de igual manerap odemos declarar un array sin necesidad de espoecificar el tipado, ya que lo que hace en estos casos TS infiere el tip ode array que estamos declarando ,esto quiere decir que basandose ts en lo que contiene el arry y el tipo de datos este inferie que tido de array es.
-console.log('\n=========== Arrays. ==========='); 
+// ^Arrays.
+// ^Los arrays dentro de TypeScript funcionan de manera muy similar a como lo hacen en JavaScript, ya que siguen siendo estructuras que permiten almacenar múltiples valores dentro de una misma variable, organizados por índice. Sin embargo, la diferencia clave es que en TypeScript los arrays pueden y deben estar **tipados**, lo que significa que se especifica qué tipo de datos pueden almacenar. Esto aporta mayor seguridad y control, evitando que se inserten valores incompatibles dentro del arreglo. Los arrays pueden contener números, strings, booleanos u otros tipos más complejos, pero siempre respetando el tipado declarado.
+console.log('\n=========== Arrays. ==========='); //* Muestra en consola el título de la sección dedicada a los arrays.
 
-let variableTipoArray = [1,2,3,4,5]
+// ~Tipado de arrays.
+// ~El tipado de arrays en TypeScript tiene una sintaxis particular. No se puede declarar un array simplemente como `let nombre: string = []`, ya que eso indicaría que la variable es un string y no un arreglo. Para declarar correctamente un array tipado, se debe colocar primero el tipo de dato que almacenará y luego los corchetes `[]`. Por ejemplo, `string[]` indica un arreglo que solo puede contener strings. Este mismo patrón aplica para `number[]`, `boolean[]`, entre otros. Esta sintaxis garantiza que todos los elementos dentro del arreglo sean del mismo tipo.
+let variableTipoArray: string[] = ['Hola', 'Mundo']; //* Declara un array tipado como string[], permitiendo únicamente cadenas de texto dentro del arreglo.
 
+// ~TypeScript infiere los tipos de arrays.
+// ~Aunque TypeScript permite declarar arrays con tipado explícito, también puede **inferir automáticamente el tipo del arreglo** basándose en los valores iniciales que contiene. Esto significa que si declaramos un array con números, TypeScript entenderá que se trata de un `number[]`, incluso si no lo especificamos manualmente. Esta característica se conoce como **type inference** y facilita escribir código más limpio sin perder seguridad de tipos.
+let variableTipoArrayInferido = [1, 2, 3, 4, 5]; //* Declara un array sin tipado explícito; TypeScript infiere automáticamente que es de tipo number[].
 
+// ~Incompatibilidad de datos en cierto tipo de arrays.
+// ~Una vez que un array ha sido tipado explícitamente o inferido por TypeScript, este solo aceptará elementos del tipo correspondiente. Si se intenta insertar un valor de tipo distinto, el compilador generará un error. Esto evita inconsistencias en los datos y errores en tiempo de ejecución. Por ejemplo, un arreglo de tipo number no permitirá almacenar strings.
+let variableTipoArrayNumber = [1, 2, 3, 4, 5]; //* Declara un array que TypeScript infiere como number[].
+// variableTipoArrayNumber.push('Hola Mundo'); //* Esta línea generaría un error porque se intenta insertar un string en un array de números.
 
+// ~Desglose dentro de editores de código.
+// ~Al igual que con otros tipos de datos en TypeScript, los editores de código modernos aprovechan el tipado para ofrecer autocompletado inteligente. Cuando se escribe el nombre del array seguido de un punto, el editor mostrará únicamente los métodos compatibles con el tipo de arreglo declarado, como `push`, `pop`, `map`, `filter`, entre otros. Esto mejora la productividad y reduce errores al programar.
+let variableTipoArrayNumberDesgloce: number[] = [1, 2, 3, 4, 5]; //* Declara un array tipado explícitamente como number[].
+// variableTipoArrayNumberDesgloce. //* Al escribir el punto, el editor sugerirá métodos propios de arrays compatibles con números.
+
+// ~¿Se pueden declarar arrays de diferentes tipos de datos?.
+// ~Sí, es posible declarar arrays que contengan más de un tipo de dato. Sin embargo, para lograr esto se utilizan **tipados especializados** como los union types (`(string | number)[]`). Estos permiten combinar múltiples tipos dentro de un mismo arreglo de manera controlada. No obstante, estos conceptos se abordan en secciones más avanzadas, ya que requieren comprender previamente cómo funcionan las uniones y la composición de tipos en TypeScript.
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
