@@ -172,7 +172,6 @@ console.log(`Mismo dato Any pero ahora como number: ${tipoDatoAny}.`); //* Impri
 
 // ^Arrays.
 // ^Los arrays dentro de TypeScript funcionan de manera muy similar a como lo hacen en JavaScript, ya que siguen siendo estructuras que permiten almacenar múltiples valores dentro de una misma variable, organizados por índice. Sin embargo, la diferencia clave es que en TypeScript los arrays pueden y deben estar **tipados**, lo que significa que se especifica qué tipo de datos pueden almacenar. Esto aporta mayor seguridad y control, evitando que se inserten valores incompatibles dentro del arreglo. Los arrays pueden contener números, strings, booleanos u otros tipos más complejos, pero siempre respetando el tipado declarado.
-console.log('\n=========== Arrays. ==========='); //* Muestra en consola el título de la sección dedicada a los arrays.
 
 // ~Tipado de arrays.
 // ~El tipado de arrays en TypeScript tiene una sintaxis particular. No se puede declarar un array simplemente como `let nombre: string = []`, ya que eso indicaría que la variable es un string y no un arreglo. Para declarar correctamente un array tipado, se debe colocar primero el tipo de dato que almacenará y luego los corchetes `[]`. Por ejemplo, `string[]` indica un arreglo que solo puede contener strings. Este mismo patrón aplica para `number[]`, `boolean[]`, entre otros. Esta sintaxis garantiza que todos los elementos dentro del arreglo sean del mismo tipo.
@@ -194,5 +193,32 @@ let variableTipoArrayNumberDesgloce: number[] = [1, 2, 3, 4, 5]; //* Declara un 
 
 // ~¿Se pueden declarar arrays de diferentes tipos de datos?.
 // ~Sí, es posible declarar arrays que contengan más de un tipo de dato. Sin embargo, para lograr esto se utilizan **tipados especializados** como los union types (`(string | number)[]`). Estos permiten combinar múltiples tipos dentro de un mismo arreglo de manera controlada. No obstante, estos conceptos se abordan en secciones más avanzadas, ya que requieren comprender previamente cómo funcionan las uniones y la composición de tipos en TypeScript.
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+// ^Objetos (Introducción).
+// ^La introducción a los objetos en TypeScript es muy similar a la forma en que se trabajan en JavaScript, ya que la sintaxis base se mantiene prácticamente igual. Sin embargo, la diferencia clave radica en el **sistema de tipado estático**, el cual permite que cada propiedad del objeto tenga un tipo definido o inferido. Esto aporta mayor seguridad, control y claridad en la estructura de los datos. Aunque visualmente parezca lo mismo que en JavaScript, internamente TypeScript está validando que cada clave contenga el tipo correcto, evitando errores comunes en tiempo de ejecución.
+
+// ~Declaración de objetos en TypeScript.
+// ~Los objetos en TypeScript se declaran utilizando la misma estructura que en JavaScript: tipo de variable, nombre, operador de asignación y llaves `{}` donde se definen las claves y sus respectivos valores. Cada clave puede almacenar distintos tipos de datos como strings, números, booleanos, arrays, funciones u otros objetos. Aunque no es obligatorio utilizar `type` o `interface` para declarar un objeto, es altamente recomendable en proyectos grandes, ya que permiten definir contratos claros. Si no se usan, TypeScript aplicará **inferencia de tipos**, generando automáticamente el tipo interno del objeto basado en sus valores iniciales.
+let nombreObjeto = { //* Declara un objeto utilizando la sintaxis literal estándar de JavaScript.
+    clave: 'valor' //* Define una propiedad llamada `clave` con un valor string; TypeScript infiere que esta propiedad es de tipo string.
+}; //* Cierre del objeto literal.
+
+
+// ~Inferencia de tipo de clave.
+// ~Cuando no se utilizan `type` o `interface`, TypeScript analiza automáticamente los valores iniciales del objeto y genera un tipo interno basado en ellos. Esto significa que cada propiedad queda fuertemente tipada según su valor inicial. Aunque esta inferencia es poderosa y funcional, tiene una consecuencia importante: si posteriormente se intenta reasignar el objeto con valores de tipos diferentes, TypeScript generará un error. Además, cuando se redeclara completamente un objeto, es necesario proporcionar **todas las propiedades originales** con sus respectivos tipos correctos, ya que el tipado generado internamente exige coherencia estructural.
+let objetoProgramador = { //* Declara un objeto literal que representa un programador.
+    nombre: 'Christian', //* Propiedad `nombre` inferida como string.
+    tecnologias: ['HTML','CSS','JS','TS'], //* Propiedad `tecnologias` inferida como string[].
+    tomaAgua: true, //* Propiedad `tomaAgua` inferida como boolean.
+}; //* Cierre del objeto literal.
+
+// objetoProgramador = { //* Intento de reasignación completa del objeto.
+//     nombre: ['Christian'], //* Error: se intenta cambiar el tipo de string a string[].
+//     tecnologias: 12, //* Error: se intenta cambiar el tipo de string[] a number.
+//     tomaAgua: 'hola', //* Error: se intenta cambiar el tipo de boolean a string.
+// }; //* Este bloque generaría errores de tipado porque no respeta la estructura inferida originalmente.
+
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
