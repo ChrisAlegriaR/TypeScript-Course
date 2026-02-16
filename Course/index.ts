@@ -222,3 +222,95 @@ let objetoProgramador = { //* Declara un objeto literal que representa un progra
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+// ^Type Personalizado.
+// ^`Type` cuenta con diferentes funciones dentro de TypeScript, pero una de las más utilizadas es la posibilidad de **tipar objetos de manera personalizada**. Esto nos permite hacer más rígido y estructurado nuestro código, ya que ese es el objetivo principal de TypeScript: tener un sistema más sólido, robusto y predecible que JavaScript, evitando inconsistencias en los datos y errores en tiempo de ejecución.
+
+// ~Declaracion de tipado con Type y vinculacion del type con el objeto.
+// ~Para poder asignar un tipado a un objeto es necesario usar `type`, el cual nos permite especificar y declarar el tipo de dato que tendrá cada clave de nuestro objeto. Esto le proporciona mayor robustez al sistema y asegura que el objeto respete exactamente la estructura que definimos. Posteriormente, el objeto se vinculará con el `type` creado, heredando automáticamente el tipado definido para sus claves y valores.
+// ?Declaracion de tipado con Type.
+// ?El uso de `type` es relativamente sencillo. Primero se escribe la palabra reservada `type`, después el nombre del tipo (por convención en PascalCase), seguido del símbolo igual y un bloque de llaves `{}`. Dentro de las llaves se declaran las claves exactamente como existirán en el objeto, y después de cada clave se especifica el tipo de dato utilizando `:`. Es importante recordar que los nombres de `type`, `interface` y clases comienzan con mayúscula por convención, incluso si el objeto que lo use comienza con minúscula.
+type ObjetoCoche = { //* Declara un type personalizado llamado `ObjetoCoche`.
+    marca: string, //* Define la propiedad `marca` como obligatoria y de tipo string.
+    anio: number, //* Define la propiedad `anio` como obligatoria y de tipo number.
+    funciona: boolean //* Define la propiedad `funciona` como obligatoria y de tipo boolean.
+} //* Cierre del bloque del type.
+
+// ?Vincular tipado Type con objeto.
+// ?Una vez que el `type` está definido, para vincularlo con un objeto se agrega `: NombreDelType` después del nombre del objeto. Esto hará que el objeto adopte automáticamente la estructura definida. Si alguna clave no coincide en nombre o tipo, TypeScript generará un error en tiempo de compilación.
+let objetoCoche: ObjetoCoche = { //* Declara un objeto vinculado al type `ObjetoCoche`.
+    marca: 'Nissan', //* Asigna un valor válido tipo string a la propiedad `marca`.
+    anio: 2003, //* Asigna un valor válido tipo number a la propiedad `anio`.
+    funciona: true //* Asigna un valor válido tipo boolean a la propiedad `funciona`.
+}; //* Cierre del objeto literal.
+
+// ~Uso de un solo Type con diferentes objetos.
+// ~La declaración de los `type` no se limita a un solo objeto. Podemos utilizar un mismo `type` como plantilla para múltiples objetos que compartan la misma estructura. Esto permite reutilizar la definición y mantener coherencia estructural en diferentes partes del programa.
+type EstudianteOp = { //* Declara un type reutilizable llamado `EstudianteOp`.
+    nombre: string, //* Propiedad obligatoria tipo string.
+    grado: number, //* Propiedad obligatoria tipo number.
+    grupo: string, //* Propiedad obligatoria tipo string.
+    aprovado: boolean //* Propiedad obligatoria tipo boolean.
+} //* Cierre del type.
+
+let estudianteOp1: EstudianteOp = { //* Primer objeto que utiliza el type `EstudianteOp`.
+    nombre: 'Mariana Sanchez', //* Valor correcto tipo string.
+    grado: 3, //* Valor correcto tipo number.
+    grupo: 'A', //* Valor correcto tipo string.
+    aprovado: true //* Valor correcto tipo boolean.
+} //* Cierre del objeto.
+
+let estudianteOp2: EstudianteOp = { //* Segundo objeto reutilizando el mismo type.
+    nombre: 'Rodolfo Alegria', //* Valor correcto tipo string.
+    grado: 5, //* Valor correcto tipo number.
+    grupo: 'B', //* Valor correcto tipo string.
+    aprovado: false //* Valor correcto tipo boolean.
+} //* Cierre del objeto.
+
+
+// ~Declaracion de claves opcionales y con diferentes tipos de datos.
+// ~Así como en variables podemos permitir más de un tipo de dato utilizando `|`, y así como en funciones podemos declarar parámetros opcionales con `?`, también es posible hacer lo mismo dentro de un `type`. Para permitir múltiples tipos en una clave usamos `|` (union types), y para declarar claves opcionales utilizamos `?`.
+type TrabajadorOp = { //* Declara un type con propiedades opcionales y union types.
+    nombre: string, //* Propiedad obligatoria tipo string.
+    edad: string | number, //* Propiedad que puede ser string o number.
+    activo?: boolean //* Propiedad opcional tipo boolean.
+} //* Cierre del type.
+
+let objetoTrabajadorOp1: TrabajadorOp = { //* Objeto que usa el type `TrabajadorOp`.
+    nombre: 'Pedro Perez', //* Valor válido tipo string.
+    edad: '34', //* Valor válido tipo string permitido por el union type.
+} //* Cierre del objeto.
+
+let objetoTrabajadorOp2: TrabajadorOp = { //* Segundo objeto usando el mismo type.
+    nombre: 'Pedro Perez', //* Valor válido tipo string.
+    edad: 23, //* Valor válido tipo number permitido por el union type.
+    activo: false //* Propiedad opcional incluida correctamente.
+} //* Cierre del objeto.
+
+// ~Errores de objetos con uso de Type.
+// ~Existen errores comunes cuando se implementa un tipado con `type` en objetos. Estos errores afectan partes específicas de la estructura y son detectados en tiempo de compilación. Los más comunes son: falta de una clave obligatoria, declarar una clave no definida en el type o asignar un tipo diferente al especificado.
+// ?Error por falta de clave valor en el objeto
+// ?Este error ocurre cuando omitimos una propiedad que fue declarada como obligatoria dentro del `type`. TypeScript marcará el error directamente en el nombre de la variable del objeto indicando que falta una propiedad requerida.
+type TipadoObjeto = { //* Declara un type con dos propiedades obligatorias.
+    nombre: string, //* Propiedad obligatoria tipo string.
+    anio: number //* Propiedad obligatoria tipo number.
+} //* Cierre del type.
+
+// let objetoFaltaClaveValorObjeto: TipadoObjeto = { //* Intento de crear objeto incompleto.
+//     nombre: 'Jesus Sanchez' //* Falta la propiedad `anio`, lo que generaría error.
+// } //* TypeScript marcaría error por estructura incompleta.
+
+// ?Error por especificar una clave, valor de mas en el objeto.
+// ?Este error se genera cuando agregamos una propiedad que no existe en el `type`. TypeScript marcará el error directamente en el nombre de la clave adicional.
+let objetoEspecificarClaveValorDemas: TipadoObjeto = { //* Objeto correctamente vinculado al type.
+    nombre: 'Jesus Sanchez', //* Propiedad válida.
+    anio: 2026, //* Propiedad válida.
+    // activo: true //* Esta línea generaría error porque `activo` no existe en `TipadoObjeto`.
+} //* Cierre del objeto.
+
+// ?Error por especificar una clave, valor con tipo diferente de dato.
+// ?Este error ocurre cuando el tipo del valor no coincide con el tipo declarado en el `type`. TypeScript indicará el error señalando la clave incompatible.
+// let objetoEspecificarClaveValorDatoDiferente: TipadoObjeto = { //* Intento de crear objeto con tipo incorrecto.
+//     nombre: 'Jesus Sanchez', //* Correcto.
+//     anio: '2026', //* Error: debería ser number, no string.
+// } //* TypeScript marcaría error por incompatibilidad de tipos.
