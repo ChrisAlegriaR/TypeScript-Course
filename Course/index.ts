@@ -265,7 +265,6 @@ let estudianteOp2: EstudianteOp = { //* Segundo objeto reutilizando el mismo typ
     aprovado: false //* Valor correcto tipo boolean.
 } //* Cierre del objeto.
 
-
 // ~Declaracion de claves opcionales y con diferentes tipos de datos.
 // ~Así como en variables podemos permitir más de un tipo de dato utilizando `|`, y así como en funciones podemos declarar parámetros opcionales con `?`, también es posible hacer lo mismo dentro de un `type`. Para permitir múltiples tipos en una clave usamos `|` (union types), y para declarar claves opcionales utilizamos `?`.
 type TrabajadorOp = { //* Declara un type con propiedades opcionales y union types.
@@ -486,3 +485,56 @@ function funcionUsoInterfaces3(parametroRecibira: InterfaceProgramador){ //* Fun
 } //* Cierre de la función.
 
 funcionUsoInterfaces3(programador3); //* Ejecución correcta mientras no se intente usar propiedades no declaradas.
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+// ^Clases y OOP
+// ^Bien sabemos que existe la programación orientada a objetos (POO), en la cual se utilizan conceptos fundamentales como abstracción, clases, polimorfismo, herencia, instancias, encapsulamiento y más. En JavaScript, pese a ser un lenguaje flexible y multiparadigma, también se puede trabajar con Programación Orientada a Objetos. Sin embargo, una de las estructuras más fuertes y características de TypeScript son precisamente las clases, ya que este lenguaje depende en gran medida de ellas, especialmente cuando hablamos del manejo estructurado de la información y del uso formal de la POO. Debido a que TypeScript es un lenguaje tipado, resulta mucho más adecuado para trabajar con este paradigma, ya que nos obliga a definir estructuras claras y contratos bien establecidos. Por lo tanto, al ser un lenguaje con tipado estático, TypeScript cuenta con más herramientas y restricciones que hacen que su sintaxis y comportamiento orientado a objetos se asemeje mucho más a lenguajes como Java o incluso C#, ya que si comparamos la POO en TypeScript con la de Java, por ejemplo, podremos observar muchísimas similitudes tanto en estructura como en filosofía de diseño.
+console.log('\n=========== Clases y POO. ==========='); //* Muestra en consola el título de la sección dedicada a Clases y Programación Orientada a Objetos.
+
+// ~Declaracion de clases y su contenido.
+// ~Recordemos que TypeScript está basado en JavaScript, por lo que la forma de declarar y crear clases es prácticamente igual en ambos lenguajes. Se utiliza la palabra reservada `class`, seguida del nombre de la clase (por convención iniciando con mayúscula), y finalmente un bloque de llaves `{}` donde se define su contenido. Sin embargo, a diferencia de JavaScript, en TypeScript debemos declarar explícitamente los tipos de datos que vamos a utilizar, especialmente dentro del constructor. Esto implica que debemos tipar los parámetros que recibe el constructor y también debemos tipar los atributos de instancia. Estos atributos, que en JavaScript conocemos como `this.nombreAtributo`, en TypeScript deben declararse previamente dentro del cuerpo de la clase utilizando la estructura `nombreAtributo: tipoDeDato;`. Es importante recordar que estos atributos no son variables tradicionales, por lo que no se utiliza `let`, `const` o `var`. El valor real se les asigna dentro del constructor. Si no se declara alguno de estos tipados, TypeScript nos arrojará un error, ya que exige consistencia estructural.
+class PeliculaClase1 { //* Declaración de la clase `PeliculaClase1`.
+    nombre: string; //* Declaración del atributo de instancia `nombre` tipado como string.
+    calificacion: number; //* Declaración del atributo de instancia `calificacion` tipado como number.
+
+    constructor(nombre: string, calificacion: number){ //* Constructor que recibe parámetros tipados.
+        this.nombre = nombre; //* Asigna el valor recibido al atributo de instancia `nombre`.
+        this.calificacion = calificacion; //* Asigna el valor recibido al atributo de instancia `calificacion`.
+    } //* Cierre del constructor.
+} //* Cierre de la clase `PeliculaClase1`.
+
+// ~Declaracion de atributos de instancias sin inicializar.
+// ~Si únicamente declaramos los atributos de instancia pero no les asignamos un valor dentro del constructor mediante `this.atributo = valor;`, TypeScript nos arrojará un error. Esto ocurre porque es una regla propia del lenguaje que todos los atributos deben estar correctamente inicializados. Para solucionar esto, podemos asignarles un valor por defecto directamente en su declaración, o bien utilizar el símbolo de interrogación `?`, el cual indica que dicho atributo puede ser `undefined`. Es importante recordar que también podríamos declarar el tipo como una unión utilizando `| undefined`, lo cual conceptualmente es similar al uso del `?`. Otra forma correcta de inicializar es asignar el valor dentro del constructor utilizando el parámetro recibido.
+class PeliculaClase2 { //* Declaración de la clase `PeliculaClase2`.
+    nombre?: string; //* Atributo opcional que puede ser string o undefined.
+    calificacion: number = 7; //* Atributo inicializado directamente con valor por defecto.
+    genero: string; //* Atributo obligatorio que deberá inicializarse en el constructor.
+
+    constructor(generoRecibido: string){ //* Constructor que recibe el género como parámetro tipado.
+        this.genero = generoRecibido; //* Inicializa el atributo `genero` con el valor recibido.
+    } //* Cierre del constructor.
+} //* Cierre de la clase `PeliculaClase2`.
+
+// ~Uso de This en metodos y mas.
+// ~Si hemos trabajado con métodos en JavaScript, sabemos que existe un concepto extremadamente importante dentro de la Programación Orientada a Objetos: el uso de `this`. Para comprender correctamente `this`, debemos entender primero los atributos de instancia. Cada vez que trabajamos con atributos definidos en una clase, debemos acceder a ellos utilizando `this.nombreAtributo`. Esto le indica a TypeScript que estamos haciendo referencia al atributo perteneciente a esa instancia específica. Es posible que dentro de un método declaremos una variable local con el mismo nombre que un atributo de instancia; en ese caso, la diferencia entre usar `this.nombre` o simplemente `nombre` será crucial. `this.nombre` hará referencia al atributo de la instancia, mientras que `nombre` sin `this` hará referencia a la variable local. Aunque en algunos casos podría funcionar omitir `this` si no existe conflicto de nombres, es una excelente práctica utilizarlo siempre para mejorar la claridad, evitar ambigüedades y hacer el código más legible y profesional.
+console.log('----- Uso de This en metodos y mas. -----'); //* Muestra en consola el inicio de la subsección sobre el uso de `this`.
+
+class PeliculaClase3 { //* Declaración de la clase `PeliculaClase3`.
+    nombre?: string; //* Atributo opcional de instancia.
+
+    constructor(nombreRecibido: string){ //* Constructor que recibe un nombre tipado.
+        this.nombre = nombreRecibido; //* Asigna el valor recibido al atributo de instancia `nombre`.
+    } //* Cierre del constructor.
+
+    asignarNombre(){ //* Método que demuestra la diferencia entre variable local y atributo de instancia.
+        let nombre: string = 'Nemo'; //* Declaración de una variable local llamada `nombre`.
+        console.log('Nombre almacenado en variable: ' + nombre) //* Muestra el valor de la variable local.
+        console.log('Nombre almacenado en atributo de la instancia: ' + this.nombre); //* Muestra el valor del atributo de instancia usando `this`.
+    } //* Cierre del método `asignarNombre`.
+} //* Cierre de la clase `PeliculaClase3`.
+
+let pelicula1 = new PeliculaClase3('Peter Pan'); //* Se crea una instancia de la clase pasando el nombre al constructor.
+pelicula1.asignarNombre(); //* Se ejecuta el método para observar el comportamiento de `this`.
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
