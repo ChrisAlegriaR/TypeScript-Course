@@ -138,7 +138,6 @@ console.log(`Mismo dato Any pero ahora como number: ${tipoDatoAny}.`); //* Impri
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // ^Arrays.
 // ^Los arrays dentro de TypeScript funcionan de manera muy similar a como lo hacen en JavaScript, ya que siguen siendo estructuras que permiten almacenar múltiples valores dentro de una misma variable, organizados por índice. Sin embargo, la diferencia clave es que en TypeScript los arrays pueden y deben estar **tipados**, lo que significa que se especifica qué tipo de datos pueden almacenar. Esto aporta mayor seguridad y control, evitando que se inserten valores incompatibles dentro del arreglo. Los arrays pueden contener números, strings, booleanos u otros tipos más complejos, pero siempre respetando el tipado declarado.
-console.log('\n=========== Arrays. ==========='); //* Muestra en consola el título de la sección dedicada a los arrays.
 // ~Tipado de arrays.
 // ~El tipado de arrays en TypeScript tiene una sintaxis particular. No se puede declarar un array simplemente como `let nombre: string = []`, ya que eso indicaría que la variable es un string y no un arreglo. Para declarar correctamente un array tipado, se debe colocar primero el tipo de dato que almacenará y luego los corchetes `[]`. Por ejemplo, `string[]` indica un arreglo que solo puede contener strings. Este mismo patrón aplica para `number[]`, `boolean[]`, entre otros. Esta sintaxis garantiza que todos los elementos dentro del arreglo sean del mismo tipo.
 let variableTipoArray = ['Hola', 'Mundo']; //* Declara un array tipado como string[], permitiendo únicamente cadenas de texto dentro del arreglo.
@@ -156,3 +155,165 @@ let variableTipoArrayNumberDesgloce = [1, 2, 3, 4, 5]; //* Declara un array tipa
 // ~¿Se pueden declarar arrays de diferentes tipos de datos?.
 // ~Sí, es posible declarar arrays que contengan más de un tipo de dato. Sin embargo, para lograr esto se utilizan **tipados especializados** como los union types (`(string | number)[]`). Estos permiten combinar múltiples tipos dentro de un mismo arreglo de manera controlada. No obstante, estos conceptos se abordan en secciones más avanzadas, ya que requieren comprender previamente cómo funcionan las uniones y la composición de tipos en TypeScript.
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// ^Objetos (Introducción).
+// ^La introducción a los objetos en TypeScript es muy similar a la forma en que se trabajan en JavaScript, ya que la sintaxis base se mantiene prácticamente igual. Sin embargo, la diferencia clave radica en el **sistema de tipado estático**, el cual permite que cada propiedad del objeto tenga un tipo definido o inferido. Esto aporta mayor seguridad, control y claridad en la estructura de los datos. Aunque visualmente parezca lo mismo que en JavaScript, internamente TypeScript está validando que cada clave contenga el tipo correcto, evitando errores comunes en tiempo de ejecución.
+// ~Declaración de objetos en TypeScript.
+// ~Los objetos en TypeScript se declaran utilizando la misma estructura que en JavaScript: tipo de variable, nombre, operador de asignación y llaves `{}` donde se definen las claves y sus respectivos valores. Cada clave puede almacenar distintos tipos de datos como strings, números, booleanos, arrays, funciones u otros objetos. Aunque no es obligatorio utilizar `type` o `interface` para declarar un objeto, es altamente recomendable en proyectos grandes, ya que permiten definir contratos claros. Si no se usan, TypeScript aplicará **inferencia de tipos**, generando automáticamente el tipo interno del objeto basado en sus valores iniciales.
+let nombreObjeto = {
+    clave: 'valor' //* Define una propiedad llamada `clave` con un valor string; TypeScript infiere que esta propiedad es de tipo string.
+}; //* Cierre del objeto literal.
+// ~Inferencia de tipo de clave.
+// ~Cuando no se utilizan `type` o `interface`, TypeScript analiza automáticamente los valores iniciales del objeto y genera un tipo interno basado en ellos. Esto significa que cada propiedad queda fuertemente tipada según su valor inicial. Aunque esta inferencia es poderosa y funcional, tiene una consecuencia importante: si posteriormente se intenta reasignar el objeto con valores de tipos diferentes, TypeScript generará un error. Además, cuando se redeclara completamente un objeto, es necesario proporcionar **todas las propiedades originales** con sus respectivos tipos correctos, ya que el tipado generado internamente exige coherencia estructural.
+let objetoProgramador = {
+    nombre: 'Christian', //* Propiedad `nombre` inferida como string.
+    tecnologias: ['HTML', 'CSS', 'JS', 'TS'], //* Propiedad `tecnologias` inferida como string[].
+    tomaAgua: true, //* Propiedad `tomaAgua` inferida como boolean.
+}; //* Cierre del objeto literal.
+// ?Vincular tipado Type con objeto.
+// ?Una vez que el `type` está definido, para vincularlo con un objeto se agrega `: NombreDelType` después del nombre del objeto. Esto hará que el objeto adopte automáticamente la estructura definida. Si alguna clave no coincide en nombre o tipo, TypeScript generará un error en tiempo de compilación.
+let objetoCoche = {
+    marca: 'Nissan', //* Asigna un valor válido tipo string a la propiedad `marca`.
+    anio: 2003, //* Asigna un valor válido tipo number a la propiedad `anio`.
+    funciona: true //* Asigna un valor válido tipo boolean a la propiedad `funciona`.
+}; //* Cierre del objeto literal.
+let estudianteOp1 = {
+    nombre: 'Mariana Sanchez', //* Valor correcto tipo string.
+    grado: 3, //* Valor correcto tipo number.
+    grupo: 'A', //* Valor correcto tipo string.
+    aprovado: true //* Valor correcto tipo boolean.
+}; //* Cierre del objeto.
+let estudianteOp2 = {
+    nombre: 'Rodolfo Alegria', //* Valor correcto tipo string.
+    grado: 5, //* Valor correcto tipo number.
+    grupo: 'B', //* Valor correcto tipo string.
+    aprovado: false //* Valor correcto tipo boolean.
+}; //* Cierre del objeto.
+let objetoTrabajadorOp1 = {
+    nombre: 'Pedro Perez', //* Valor válido tipo string.
+    edad: '34', //* Valor válido tipo string permitido por el union type.
+}; //* Cierre del objeto.
+let objetoTrabajadorOp2 = {
+    nombre: 'Pedro Perez', //* Valor válido tipo string.
+    edad: 23, //* Valor válido tipo number permitido por el union type.
+    activo: false //* Propiedad opcional incluida correctamente.
+}; //* Cierre del objeto.
+// let objetoFaltaClaveValorObjeto: TipadoObjeto = { //* Intento de crear objeto incompleto.
+//     nombre: 'Jesus Sanchez' //* Falta la propiedad `anio`, lo que generaría error.
+// } //* TypeScript marcaría error por estructura incompleta.
+// ?Error por especificar una clave, valor de mas en el objeto.
+// ?Este error se genera cuando agregamos una propiedad que no existe en el `type`. TypeScript marcará el error directamente en el nombre de la clave adicional.
+let objetoEspecificarClaveValorDemas = {
+    nombre: 'Jesus Sanchez', //* Propiedad válida.
+    anio: 2026, //* Propiedad válida.
+    // activo: true //* Esta línea generaría error porque `activo` no existe en `TipadoObjeto`.
+}; //* Cierre del objeto.
+// ?Error por especificar una clave, valor con tipo diferente de dato.
+// ?Este error ocurre cuando el tipo del valor no coincide con el tipo declarado en el `type`. TypeScript indicará el error señalando la clave incompatible.
+// let objetoEspecificarClaveValorDatoDiferente: TipadoObjeto = { //* Intento de crear objeto con tipo incorrecto.
+//     nombre: 'Jesus Sanchez', //* Correcto.
+//     anio: '2026', //* Error: debería ser number, no string.
+// } //* TypeScript marcaría error por incompatibilidad de tipos.
+// ~Funciones con Type.
+// ~Dentro del mundo de TypeScript también podemos asignarle a un parámetro un `type` como tipo de dato. Esto, al igual que con `interface`, no crea un tipo nuevo inexistente en memoria, sino que define un alias estructural que funcionará como contrato. Es decir, cuando declaramos un parámetro con un `type`, le estamos indicando a la función que el objeto que se pase como argumento TIENE que cumplir obligatoriamente con la estructura definida en dicho `type`. Por lo tanto, el uso de `type` como tipo de dato en parámetros también funciona como un filtro de seguridad estructural. Si intentamos pasar un objeto que no tenga la misma forma que el `type` declarado, TypeScript generará un error y no permitirá compilar el código, protegiendo así la coherencia del programa.
+console.log('----- Declaracion de y uso de funciones con type. -----'); //* Muestra título en consola para esta sección.
+let desarrollador1 = {
+    nombre: 'Andres', //* Propiedad válida según el contrato.
+    tecnologias: ['React', 'Node', 'TypeScript'] //* Propiedad válida según el contrato.
+}; //* Cierre del objeto `desarrollador1`.
+function funcionUsoType(parametroRecibira) {
+    console.log(`El nombre del desarrollador es: ${parametroRecibira.nombre}`); //* Se accede únicamente a propiedades garantizadas por el type.
+} //* Cierre de la función `funcionUsoType`.
+funcionUsoType(desarrollador1); //* Se ejecuta correctamente porque el objeto cumple con el contrato estructural.
+// ?Paso de objetos con informacion de mas como parametro usando type.
+// ?Algo importante a destacar es que cuando utilizamos un `type` como tipo de parámetro, TypeScript también permitirá que el objeto que se pase tenga información adicional, siempre y cuando cumpla con las propiedades mínimas definidas en el `type`. Es decir, si el `type` exige `nombre` y `tecnologias`, y el objeto además incluye otra propiedad extra como `experiencia`, seguirá siendo aceptado como argumento válido, ya que el `type` solo verifica que se cumpla el contrato mínimo requerido.
+console.log('----- Paso de objetos con informacion de mas como parametro usando type. -----'); //* Separador visual en consola.
+let desarrollador2 = {
+    nombre: 'Laura', //* Propiedad requerida por el type.
+    tecnologias: ['Angular', 'TS'], //* Propiedad requerida por el type.
+    experiencia: 5 //* Propiedad adicional que no está declarada en el type.
+}; //* Cierre del objeto `desarrollador2`.
+function funcionUsoType2(parametroRecibira) {
+    console.log(`El nombre del desarrollador es: ${parametroRecibira.nombre}`); //* Uso correcto de propiedad declarada.
+} //* Cierre de la función `funcionUsoType2`.
+funcionUsoType2(desarrollador2); //* Se ejecuta correctamente porque cumple con el contrato mínimo.
+// ?Uso de dato de mas de objeto como parametro usando type.
+// ?Ahora bien, aunque el `type` acepta el parámetro que contiene datos adicionales, hay algo extremadamente importante que debemos entender. Si dentro de la función intentamos utilizar un dato que está de más en el objeto que se pasó como parámetro, la función generará un error. Esto sucede porque dicho dato adicional no forma parte de la estructura definida en el `type`, y por lo tanto no está reconocido dentro del contrato tipado. En términos simples, cuando declaramos que un parámetro es de tipo `type`, estamos limitando el acceso únicamente a las propiedades que ese `type` garantiza. Por ende, intentar usar un dato que no está declarado en el `type` provocará un error en tiempo de compilación, ya que TypeScript no reconoce esa propiedad dentro del contrato estructural.
+console.log('----- Uso de dato de mas de objetos como parametro usando type. -----'); //* Separador visual.
+let desarrollador3 = {
+    nombre: 'Sofia', //* Propiedad requerida.
+    tecnologias: ['Vue', 'JS'], //* Propiedad requerida.
+    experiencia: 3 //* Propiedad adicional no declarada en el type.
+}; //* Cierre del objeto `desarrollador3`.
+function funcionUsoType3(parametroRecibira) {
+    console.log(`El nombre del desarrollador es: ${parametroRecibira.nombre}`); //* Uso válido de propiedad declarada en el type.
+    // console.log(parametroRecibira.experiencia); //* Esto generaría error porque `experiencia` no existe dentro del type.
+} //* Cierre de la función `funcionUsoType3`.
+funcionUsoType3(desarrollador3); //* Ejecución correcta mientras no se intente acceder a propiedades no declaradas.
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// ^Interface
+// ^Si bien quizás las interfaces parecen y se ven muy similares a los `type`, cabe resaltar que para los casos donde únicamente queremos declarar el tipado de ciertos datos su sintaxis puede resultar muy parecida. Sin embargo, realmente ambos tienen diferentes usos y propósitos que conforme se vaya avanzando y profundizando en el curso se irán analizando con mayor detalle. Esto se debe a que cuentan con funcionalidades distintas entre sí y están diseñadas para escenarios específicos. Por lo tanto, en esta sección se verán únicamente interfaces básicas, las cuales nos permitirán, al igual que `type`, declarar el tipado de objetos y otros elementos, pero entendiendo que conceptualmente una `interface` representa un contrato estructural más enfocado al diseño de forma y comportamiento.
+console.log('\n=========== Interface. ==========='); //* Muestra en consola el título de la sección dedicada a interfaces.
+// ?Vincular tipado Interface con objeto.
+// ?Una vez que el `interface` está definido, para vincularlo con un objeto simplemente se agrega `: NombreDeInterface` después del nombre del objeto. Esto hará que el objeto adopte automáticamente la estructura definida en la interface. Si alguna clave no coincide en nombre o tipo, TypeScript generará un error en tiempo de compilación, impidiendo que el código continúe hasta que la estructura sea corregida.
+let objetoCoche2 = {
+    marca: 'Nissan', //* Se asigna un valor string válido para la propiedad `marca`.
+    anio: 2003, //* Se asigna un valor number válido para la propiedad `anio`.
+    funciona: true //* Se asigna un valor boolean válido para la propiedad `funciona`.
+}; //* Cierre del objeto `objetoCoche2`.
+let estudianteOp11 = {
+    nombre: 'Mariana Sanchez', //* Valor válido para `nombre`.
+    grado: 3, //* Valor válido para `grado`.
+    grupo: 'A', //* Valor válido para `grupo`.
+    aprobado: true //* Valor válido para `aprobado`.
+}; //* Cierre del objeto `estudianteOp11`.
+let estudianteOp12 = {
+    nombre: 'Rodolfo Alegria', //* Valor válido para `nombre`.
+    grado: 5, //* Valor válido para `grado`.
+    grupo: 'B', //* Valor válido para `grupo`.
+    aprobado: false //* Valor válido para `aprobado`.
+}; //* Cierre del objeto `estudianteOp12`.
+let objetoTrabajadorOp11 = {
+    nombre: 'Pedro Perez', //* Valor válido para `nombre`.
+    edad: '34', //* Valor válido (string) para `edad`.
+}; //* Cierre del objeto `objetoTrabajadorOp11`.
+let objetoTrabajadorOp12 = {
+    nombre: 'Pedro Perez', //* Valor válido para `nombre`.
+    edad: 23, //* Valor válido (number) para `edad`.
+    activo: false //* Propiedad opcional incluida correctamente.
+}; //* Cierre del objeto `objetoTrabajadorOp12`.
+// ~Funciones con Interfaces.
+// ~Dentro del mundo de TypeScript podemos asignarle a un parámetro una `interface` como tipo de dato. Esto no crea un nuevo tipo inexistente, sino que establece un contrato estructural. Esto significa que cuando declaramos el parámetro con una interface como tipo de dato, le indicamos a la función que, para poder ejecutarse correctamente, el objeto que se pase como argumento TIENE que cumplir obligatoriamente con la forma definida en la interface. Por lo tanto, el uso de interfaces como tipo de dato en parámetros funciona como un filtro de seguridad estructural. Si intentamos pasar un objeto que no tenga la misma estructura, TypeScript generará un error y no permitirá compilar el código.
+console.log('----- Declaracion de y uso de funciones con interfaces. -----'); //* Muestra título en consola.
+let programador1 = {
+    nombre: 'Christian', //* Propiedad válida.
+    lenguajes: ['HTML', 'CSS', 'JS', 'TS'] //* Propiedad válida.
+}; //* Cierre del objeto.
+function funcionUsoInterfaces(parametroRecibira) {
+    console.log(`El nombre del programador es: ${parametroRecibira.nombre}`); //* Se accede únicamente a propiedades garantizadas por la interface.
+} //* Cierre de la función.
+funcionUsoInterfaces(programador1); //* Se ejecuta correctamente porque cumple el contrato.
+// ?Paso de objetos con informacion de mas como parametro.
+// ?Algo importante a destacar es que cuando se utiliza una interface como tipo de parámetro, TypeScript permitirá que el objeto que se pase tenga información adicional, siempre y cuando cumpla con las propiedades mínimas definidas en la interface. Es decir, si la interface exige `nombre` y `lenguajes`, y el objeto además incluye `genero`, seguirá siendo aceptado como argumento válido, ya que la interface solo verifica que se cumpla el contrato mínimo requerido.
+console.log('----- Paso de objetos con informacion de mas como parametro. -----'); //* Separador visual.
+let programador2 = {
+    nombre: 'Luis', //* Propiedad requerida.
+    lenguajes: ['JS', 'TS'], //* Propiedad requerida.
+    genero: 'masculino' //* Propiedad adicional no declarada en la interface.
+}; //* Cierre del objeto.
+function funcionUsoInterfaces2(parametroRecibira) {
+    console.log(`El nombre del programador es: ${parametroRecibira.nombre}`); //* Uso correcto de propiedad declarada.
+} //* Cierre de la función.
+funcionUsoInterfaces2(programador2); //* Se ejecuta sin error porque cumple con el contrato mínimo.
+// ?Uso de dato de mas de objeto como parametro.
+// ?Ahora bien, aunque la interface acepta el parámetro que contiene datos adicionales, hay algo extremadamente importante que debemos entender. Si dentro de la función intentamos utilizar un dato que está de más en el objeto que se pasó como parámetro, la función generará un error. Esto sucede porque dicho dato adicional no forma parte de la estructura definida en la interface, y por lo tanto no está reconocido dentro del contrato tipado. En términos simples, cuando declaramos que un parámetro es de tipo interface, estamos limitando el acceso únicamente a las propiedades que la interface garantiza. Por ende, intentar usar un dato que no está declarado en la interface provocará un error en tiempo de compilación.
+console.log('----- Uso de dato de mas de objetos como parametro. -----'); //* Separador visual.
+let programador3 = {
+    nombre: 'Miguel', //* Propiedad requerida.
+    lenguajes: ['HTML', 'CSS'], //* Propiedad requerida.
+    genero: 'masculino' //* Propiedad adicional.
+}; //* Cierre del objeto.
+function funcionUsoInterfaces3(parametroRecibira) {
+    console.log(`El nombre del programador es: ${parametroRecibira.nombre}`); //* Uso válido de propiedad existente.
+    // console.log(parametroRecibira.genero); //* Esto generaría error porque `genero` no existe en la interface.
+} //* Cierre de la función.
+funcionUsoInterfaces3(programador3); //* Ejecución correcta mientras no se intente usar propiedades no declaradas.
