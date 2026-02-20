@@ -358,3 +358,81 @@ class PeliculaClase3 {
 let pelicula1 = new PeliculaClase3('Peter Pan'); //* Se crea una instancia de la clase pasando el nombre al constructor.
 pelicula1.asignarNombre(); //* Se ejecuta el método para observar el comportamiento de `this`.
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// ^Encapsulamiento, Propiedades de Parametros y Genericos.
+// ^Bien sabemos que en programación orientada a objetos una de las partes más fundamentales es la seguridad del manejo de la información. Dentro de esta seguridad se encuentra el encapsulamiento, así como también la facilidad en el tratado del código y el reciclaje del mismo, donde entran los genéricos. Ambos conceptos forman parte esencial de un trabajo profesional y de un código sólido, reutilizable, mantenible y escalable. El encapsulamiento nos permite trabajar con información privada y controlar su acceso para no romper la lógica interna de nuestro programa ni exponer datos sensibles. Por otra parte, los genéricos nos permiten reutilizar código de manera inteligente al poder pasar directamente un tipo de dato que nosotros especificamos, logrando estructuras flexibles sin perder el tipado estático que caracteriza a TypeScript.
+console.log('\n=========== Encapsulamiento y Genericos. ==========='); //* Muestra en consola el encabezado principal de la sección.
+// ~Genericos.
+// ~Los genéricos dentro de TypeScript permiten que las clases, funciones o estructuras puedan trabajar con un tipo de dato que no se define inmediatamente, sino que se especifica más adelante, normalmente en el momento de crear una instancia. Esto significa que los genéricos funcionan como un proveedor o contenedor abstracto de tipos de datos. Gracias a ellos podemos definir variables, parámetros, atributos de instancia y más utilizando como tipo el nombre del genérico. Posteriormente, cuando se cree la instancia, ese genérico recibirá el tipo concreto (por ejemplo number o string). Esto nos permite reutilizar código, evitar duplicaciones innecesarias y construir estructuras mucho más adaptables sin recurrir a tipos débiles como `any`.
+console.log('----- Genericos. -----'); //* Separador visual en consola para la subsección de genéricos.
+// ?Como se declaran los genericos en clases
+// ?Como se comentó previamente, los genéricos son una funcionalidad de TypeScript que actúan como proveedores de tipos. Podemos definir variables, parámetros y atributos utilizando el nombre del genérico como si fuera un tipo normal. Posteriormente, ese genérico recibirá el tipo real al instanciar la clase. Para declarar un genérico en una clase, debemos colocar después del nombre de la clase los símbolos < > y dentro de ellos el nombre que tendrá el genérico. Por convención muchas veces se usa la letra T, pero puede tener cualquier nombre válido.
+class ClaseConGenerico {
+} //* Cierre de la clase `ClaseConGenerico`.
+// ?Dar de alta variables, parametros y mas como tipo de dato generico.
+// ?La forma de asignar un tipo genérico a nuestros datos es exactamente igual a como hemos venido trabajando con otros tipos. Después del nombre del dato se coloca el símbolo : seguido del nombre del genérico. De esta manera, el genérico proveerá el tipo real que se especifique al momento de crear la instancia.
+class ClaseParaAlta {
+    nombre; //* Propiedad opcional cuyo tipo dependerá del tipo que se pase al genérico.
+} //* Cierre de la clase.
+// ?Paso de tipo de dato por medio de generico
+// ?El tipo concreto se pasa al momento de crear una instancia. Es en ese punto donde decidimos qué tipo queremos que adopte el genérico. Por ejemplo, podemos usar <number> si queremos trabajar con números o <string> si queremos trabajar con texto. Dependiendo del uso que le demos al genérico dentro de la clase, podremos crear estructuras que funcionen correctamente con distintos tipos sin modificar la lógica interna de la clase.
+class PasoDeDatoEnGenerico {
+    numero;
+    constructor(numero) {
+        this.numero = numero;
+    } //* Constructor que declara automáticamente `numero` como propiedad pública del tipo genérico.
+    getNombre() {
+        console.log(`El numero pasado es: ${this.numero}`); //* Imprime el valor almacenado en la instancia.
+    } //* Cierre del método.
+} //* Cierre de la clase.
+let instanciaPorNumber = new PasoDeDatoEnGenerico(2); //* Instancia que usa number como tipo del genérico.
+let instanciaPorString = new PasoDeDatoEnGenerico('6'); //* Instancia que usa string como tipo del genérico.
+instanciaPorNumber.getNombre(); //* Llama al método en la instancia numérica.
+instanciaPorString.getNombre(); //* Llama al método en la instancia string.
+// ~Propiedades de parametro.
+// ~Existe una característica dentro de TypeScript que nos puede ahorrar muchísimas líneas de código, conocida como propiedades de parámetros. Cuando trabajamos con clases normalmente debemos declarar los atributos de instancia fuera del constructor y luego inicializarlos dentro del constructor para que el parámetro recibido se asigne al atributo correspondiente. Sin embargo, TypeScript ofrece una forma más simple de escribir exactamente lo mismo. Si dentro del constructor declaramos un parámetro con su tipo y antes de su nombre especificamos si será `public` o `private`, automáticamente se creará como atributo de instancia y quedará inicializado. Es muy importante resaltar que si no especificamos `public` o `private`, no funcionará como propiedad de parámetro y deberemos hacer el proceso tradicional completo. Además, cuando declaramos propiedades fuera del constructor y no especificamos modificador de acceso, por defecto se consideran públicas. (Y recordar que si especificamos `private` directamente en el parámetro del constructor, ya no debemos hacer la declaración manual paso por paso.)
+class PropiedadesDeParametro {
+    nombre;
+    edad; //* Propiedad opcional que al no indicar modificador es pública por defecto.
+    constructor(nombre, edad) {
+        this.nombre = nombre;
+        this.edad = edad; //* Inicialización manual de la propiedad `edad`.
+    } //* Cierre del constructor.
+} //* Cierre de la clase.
+// ~Encapsulamiento.
+// ~En programación orientada a objetos, el encapsulamiento consiste en restringir el acceso directo a ciertos datos internos de una clase para proteger su estado y evitar modificaciones indebidas. En JavaScript moderno esto puede hacerse con el símbolo #, mientras que en TypeScript se utiliza el modificador `private`. Esto ocasiona que la propiedad solo pueda ser accedida desde dentro de la clase. Posteriormente, podemos utilizar métodos `set` y `get` para controlar cómo se modifica o se obtiene dicho valor, incluso agregando validaciones adicionales antes de permitir cambios.
+console.log('----- Encapsulamiento. -----'); //* Muestra encabezado en consola.
+class ClaseConEncapsulamiento {
+    contrasena; //* Propiedad privada que no puede ser accedida fuera de la clase.
+    setContrasena(contrasena) {
+        this.contrasena = contrasena; //* Asigna valor a la propiedad privada.
+    } //* Cierre del setter.
+    getContrasena() {
+        return console.log(`La contraseña es: ${this.contrasena}`); //* Accede al valor privado de forma controlada.
+    } //* Cierre del getter.
+} //* Cierre de la clase.
+let instanciaInicializarContrasena = new ClaseConEncapsulamiento(); //* Se crea instancia.
+instanciaInicializarContrasena.setContrasena('A2/.d1D_d2'); //* Se establece valor mediante setter.
+instanciaInicializarContrasena.getContrasena(); //* Se obtiene valor mediante getter.
+// ~Ejemplo de implementacion de encapsulacion, propiedades de parametros y genericos.
+// ~En este ejemplo se combinan los tres conceptos anteriores: uso de genéricos para flexibilidad de tipo, encapsulamiento para proteger el estado interno y propiedad de parámetro para simplificar la declaración del atributo `nombre`.
+console.log('----- Ejemplo de implementacion de encapsulacion, propiedades de parametros y genericos. -----'); //* Muestra encabezado en consola.
+class Sorteo {
+    nombre;
+    ticket; //* Propiedad privada tipada con el genérico.
+    constructor(nombre) {
+        this.nombre = nombre;
+    } //* Propiedad de parámetro privada.
+    setTicket(number) {
+        this.ticket = number; //* Asigna el ticket.
+    } //* Cierre del setter.
+    getTicket() {
+        return this.ticket; //* Devuelve el ticket almacenado.
+    } //* Cierre del getter.
+    sortear() {
+        return `Para ${this.nombre} el ticket es ${this.ticket}`; //* Retorna resultado usando propiedad privada y genérico.
+    } //* Cierre del método.
+} //* Cierre de la clase.
+let sorteo = new Sorteo('Christian'); //* Instancia usando number como tipo del genérico.
+sorteo.setTicket(10); //* Asigna ticket.
+console.log(sorteo.sortear()); //* Imprime resultado del sorteo.
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
