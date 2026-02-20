@@ -628,5 +628,3 @@ class Sorteo<T> { //* Clase genérica.
 let sorteo =  new Sorteo<number>('Christian'); //* Instancia usando number como tipo del genérico.
 sorteo.setTicket(10); //* Asigna ticket.
 console.log(sorteo.sortear()); //* Imprime resultado del sorteo.
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
