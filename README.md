@@ -1,7 +1,7 @@
 # 🔷 TypeScript Course  
 
 ## 📖 Course, Examples and Concepts Description  
-This repository is composed of three parts:
+This repository is composed of one part:
 
 1. **TypeScript Course**:  
    In the **`course/`** folder, you will find my personal notes on the fundamental and structured concepts of TypeScript that I learned in the **SergieCode** course. This course provides the essential knowledge needed to understand and practice static typing in JavaScript environments, including detailed explanations about data types, union types, interfaces, type aliases, classes, generics, encapsulation, parameter properties, watch mode, compilation process, and object-oriented programming principles applied in TypeScript.
